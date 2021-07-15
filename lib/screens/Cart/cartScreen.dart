@@ -29,7 +29,7 @@ class CartScreen extends StatelessWidget {
                   itemCount: data.length,
                   itemBuilder: (context, index) {
                     return Dismissible(
-                      key: Key(index.toString()),
+                      key: Key(data[index].id.toString()),
                       background: Container(
                         color: Colors.red,
                         child: Align(

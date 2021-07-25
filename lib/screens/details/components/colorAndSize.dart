@@ -4,12 +4,13 @@ import 'package:hairlogistics/models/Product.dart';
 import '../../../constants.dart';
 
 class ColorAndSize extends StatefulWidget {
+   final Product products;
   ColorAndSize({
     Key key,
     @required this.products,
   }) : super(key: key);
 
-  final Product products;
+ 
 
   @override
   _ColorAndSizeState createState() => _ColorAndSizeState();

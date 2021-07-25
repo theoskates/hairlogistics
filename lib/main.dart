@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hairlogistics/constants.dart';
 import 'package:hairlogistics/providers/cartProvider.dart';
+import 'package:hairlogistics/screens/details/components/Authentication/signIn.dart';
+import 'package:hairlogistics/screens/details/components/Authentication/signUp.dart';
 import 'package:hairlogistics/screens/home/homescreen.dart';
+import 'package:hairlogistics/screens/splash_screen/splash.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -21,7 +27,12 @@ class MyApp extends StatelessWidget {
             visualDensity: VisualDensity.adaptivePlatformDensity,
             primarySwatch: Colors.blue,
           ),
-          home: HomeScreen(),
+          initialRoute: "/splash",
+          routes: {
+            "/splash": (context) => SplashScreen(),
+            "/signIn": (context) => SignIn(),
+            "/signUp": (context) => SignUp(),
+          },
         );
       },
       providers: [ChangeNotifierProvider(create: (_) => CartProvider())],

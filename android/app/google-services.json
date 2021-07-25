@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "61144130896",
+    "project_id": "hair-logistics",
+    "storage_bucket": "hair-logistics.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61144130896:android:dfccd130272845ad483855",
+        "android_client_info": {
+          "package_name": "com.example.hairlogistics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61144130896-9fksljvqr7cbqad3p8b4nbku27j4rj24.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPa8wUbrMGcvCYljxZnqSNF6e-MDrGsUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61144130896-9fksljvqr7cbqad3p8b4nbku27j4rj24.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

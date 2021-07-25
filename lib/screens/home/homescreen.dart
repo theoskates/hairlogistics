@@ -4,8 +4,10 @@ import 'package:hairlogistics/constants.dart';
 import 'package:hairlogistics/models/Product.dart';
 import 'package:hairlogistics/providers/cartProvider.dart';
 import 'package:hairlogistics/screens/Cart/cartScreen.dart';
+import 'package:hairlogistics/screens/details/components/Authentication/signIn.dart';
 import 'package:hairlogistics/screens/details/detailScreen.dart';
 import 'package:hairlogistics/screens/home/components/body.dart';
+import 'package:hairlogistics/services/firebase_services.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,9 +16,32 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({Key key, this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseServices.instance.currentUser;
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: [
+            UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: Colors.deepPurple),
+                currentAccountPicture: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.person, color: Colors.deepPurple),
+                ),
+                accountName: Text(user.displayName ?? ""),
+                accountEmail: Text(user.email ?? "")),
+            ListTile(
+              title: Text("Sign Out"),
+              trailing: Icon(Icons.logout),
+              onTap: () async {
+                await FirebaseServices.instance.signOut();
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (_) => SignIn()));
+              },
+            )
+          ],
+        ),
+      ),
       appBar: buildAppBar(context),
-      drawer: Drawer(),
       body: Body(),
     );
   }
@@ -68,13 +93,6 @@ class HomeScreen extends StatelessWidget {
 }
 
 class DataSearch extends SearchDelegate<Product> {
-  // final products = ["Astro", "Magna", "Service", "Laptop", "Desktop", "Phones"];
-
-  // final recentProducts = [
-  //   "Astro",
-  //   "Magna",
-  //   "Service",
-  // ];
   @override
   List<Widget> buildActions(BuildContext context) {
     //actions for appbar

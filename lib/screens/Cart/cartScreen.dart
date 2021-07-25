@@ -18,46 +18,49 @@ class CartScreen extends StatelessWidget {
               Navigator.pop(context);
             }),
       ),
-      body: Consumer<CartProvider>(builder: (context, provider, widget) {
-        var data = provider.getProduct;
-        return Container(
-          child: provider.getProduct.isEmpty
-              ? Center(
-                  child: Text("No Item Added"),
-                )
-              : ListView.builder(
-                  itemCount: data.length,
-                  itemBuilder: (context, index) {
-                    return Dismissible(
-                      key: Key(data[index].id.toString()),
-                      background: Container(
-                        color: Colors.red,
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Icon(Icons.delete),
-                        ),
-                      ),
-                      onDismissed: (dir) {
-                        provider.removeFromCart(data[index]);
-                      },
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: AssetImage(
-                            data[index].image,
+      body: Consumer<CartProvider>(
+        builder: (context, provider, widget) {
+          var data = provider.getProduct;
+          return Container(
+            child: provider.getProduct.isEmpty
+                ? Center(
+                    child: Text("No Item Added"),
+                  )
+                : ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      return Dismissible(
+                        key: Key(data[index].id.toString()),
+                        background: Container(
+                          color: Colors.red,
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Icon(Icons.delete),
                           ),
                         ),
-                        title: Text(data[index].title),
-                        trailing: Text("\$${data[index].price}"),
-                        subtitle: Text(
-                          data[index].description,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                        onDismissed: (dir) {
+                          provider.removeFromCart(data[index]);
+                        },
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage: AssetImage(
+                              data[index].image,
+                            ),
+                          ),
+                          title: Text(data[index].title),
+                          trailing: Text("\$${data[index].price}"),
+                          subtitle: Text(
+                            data[index].description,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                    );
-                  }),
-        );
-      }),
+                      );
+                    },
+                  ),
+          );
+        },
+      ),
     );
   }
 }

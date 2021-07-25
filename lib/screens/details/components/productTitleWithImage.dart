@@ -57,7 +57,7 @@ class ProductTitleWithImage extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
-                            image: AssetImage(
+                            image: NetworkImage(
                               products.image,
                             ),
                             fit: BoxFit.cover)),

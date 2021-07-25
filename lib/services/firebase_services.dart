@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hairlogistics/models/Product.dart';
 
 class FirebaseServices {
   static final instance = FirebaseServices();
 
   final _instance = FirebaseAuth.instance;
+  final _ref = FirebaseFirestore.instance.collection('Products');
 
   User get currentUser => this._instance.currentUser;
 
@@ -38,6 +41,18 @@ class FirebaseServices {
   Future forgotPassword(String email) async {
     try {
       await this._instance.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      return e;
+    }
+  }
+
+  Future<List<Product>> getProducts() async {
+    try {
+      var data = await _ref.get();
+      return data.docs
+          .map((e) => Product.fromJson({...e.data(), "id": e.id}))
+          .toList()
+          .cast<Product>();
     } catch (e) {
       return e;
     }

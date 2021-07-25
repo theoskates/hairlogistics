@@ -28,7 +28,7 @@ class ItemCard extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
-                        image: AssetImage(
+                        image: NetworkImage(
                           product.image,
                         ),
                         fit: BoxFit.cover)),

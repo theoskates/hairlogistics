@@ -26,37 +26,51 @@ class CartScreen extends StatelessWidget {
                 ? Center(
                     child: Text("No Item Added"),
                   )
-                : ListView.builder(
-                    itemCount: data.length,
-                    itemBuilder: (context, index) {
-                      return Dismissible(
-                        key: Key(data[index].id.toString()),
-                        background: Container(
-                          color: Colors.red,
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Icon(Icons.delete),
-                          ),
+                : Stack(
+                    children: [
+                      Container(
+                        height: double.infinity,
+                        child: ListView.builder(
+                          itemCount: data.length,
+                          itemBuilder: (context, index) {
+                            return Dismissible(
+                              key: Key(data[index].id.toString()),
+                              background: Container(
+                                color: Colors.red,
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Icon(Icons.delete),
+                                ),
+                              ),
+                              onDismissed: (dir) {
+                                provider.removeFromCart(data[index]);
+                              },
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                    data[index].image,
+                                  ),
+                                ),
+                                title: Text(data[index].title),
+                                trailing: Text("\$${data[index].price}"),
+                                subtitle: Text(
+                                  data[index].description,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            );
+                          },
                         ),
-                        onDismissed: (dir) {
-                          provider.removeFromCart(data[index]);
-                        },
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: AssetImage(
-                              data[index].image,
-                            ),
-                          ),
-                          title: Text(data[index].title),
-                          trailing: Text("\$${data[index].price}"),
-                          subtitle: Text(
-                            data[index].description,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      );
-                    },
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        left: 10,
+                        right: 10,
+                        child: TextButton(
+                            onPressed: () {}, child: Text("Proceed to pay")),
+                      )
+                    ],
                   ),
           );
         },

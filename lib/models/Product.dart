@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-
 class Product {
-  final String image, title, description;
-  final int price, size, id;
-  final Color color;
+  final String image, title, description, id;
+  final int price, size;
   Product({
     this.id,
     this.image,
@@ -11,13 +8,21 @@ class Product {
     this.price,
     this.description,
     this.size,
-    this.color,
   });
+
+  Product.fromJson(
+    Map<String, dynamic> data,
+  )   : this.id = data["id"],
+        this.image = data["image"],
+        this.description = data["description"],
+        this.price = data["price"],
+        this.title = data["title"],
+        this.size = data["size"];
 }
 
 List<Product> products = [
   Product(
-    id: 1,
+    id: "1",
     title: "Afro",
     price: 450,
     size: 12,
@@ -26,7 +31,7 @@ List<Product> products = [
     // color: Colors.brown,
   ),
   Product(
-    id: 2,
+    id: "2",
     title: "Mesh",
     price: 760,
     size: 8,
@@ -35,7 +40,7 @@ List<Product> products = [
     // color: Color(0xFFD3A984),
   ),
   Product(
-    id: 3,
+    id: "3",
     title: "Natural",
     price: 650,
     size: 8,
@@ -44,7 +49,7 @@ List<Product> products = [
     // color: Color(0xFFD3A100),
   ),
   Product(
-    id: 4,
+    id: "4",
     title: "Louisa",
     price: 390,
     size: 10,
@@ -53,7 +58,7 @@ List<Product> products = [
     // color: Color(0xFF989493),
   ),
   Product(
-    id: 5,
+    id: "5",
     title: "Mesh",
     price: 760,
     size: 8,
@@ -62,7 +67,7 @@ List<Product> products = [
     // color: Color(0xFFD3A984),
   ),
   Product(
-    id: 6,
+    id: "6",
     title: "Louisa",
     price: 390,
     size: 10,
@@ -71,7 +76,7 @@ List<Product> products = [
     // color: Color(0xFF989493),
   ),
   Product(
-    id: 7,
+    id: "7",
     title: "Afro",
     price: 450,
     size: 12,
@@ -80,7 +85,7 @@ List<Product> products = [
     // color: Colors.brown,
   ),
   Product(
-    id: 8,
+    id: "8",
     title: "Louisa",
     price: 390,
     size: 10,
@@ -89,7 +94,7 @@ List<Product> products = [
     // color: Color(0xFF989493),
   ),
   Product(
-    id: 9,
+    id: "9",
     title: "Side",
     price: 720,
     size: 11,
@@ -98,7 +103,7 @@ List<Product> products = [
     // color: Color(0xFFE6BA40),
   ),
   Product(
-    id: 10,
+    id: "10",
     title: "Louisa",
     price: 390,
     size: 10,
@@ -107,7 +112,7 @@ List<Product> products = [
     // color: Color(0xFF989493),
   ),
   Product(
-    id: 11,
+    id: "11",
     title: "Back",
     price: 410,
     size: 12,
@@ -116,7 +121,7 @@ List<Product> products = [
     // color: Color(0xFFFB7883),
   ),
   Product(
-    id: 12,
+    id: "12",
     title: "Back",
     price: 410,
     size: 12,
@@ -125,7 +130,7 @@ List<Product> products = [
     // color: Color(0xFFFB7883),
   ),
   Product(
-    id: 13,
+    id: "13",
     title: "Front",
     price: 600,
     size: 12,
@@ -134,7 +139,7 @@ List<Product> products = [
     // color: Color(0xFFAEAEAE),
   ),
   Product(
-    id: 14,
+    id: "14",
     title: "Easy",
     price: 790,
     size: 8,
@@ -143,7 +148,7 @@ List<Product> products = [
     // color: Color(0xFFD3A984),
   ),
   Product(
-    id: 15,
+    id: "15",
     title: "Mini",
     price: 380,
     size: 8,
@@ -152,7 +157,7 @@ List<Product> products = [
     // color: Color(0xFFD3A),
   ),
   Product(
-    id: 16,
+    id: "16",
     title: "Back",
     price: 410,
     size: 12,
@@ -161,7 +166,7 @@ List<Product> products = [
     // color: Color(0xFFFB7883),
   ),
   Product(
-    id: 17,
+    id: "17",
     title: "Locks",
     price: 900,
     size: 8,
@@ -170,7 +175,7 @@ List<Product> products = [
     // color: Color(0xFFD3A900),
   ),
   Product(
-    id: 18,
+    id: "18",
     title: "Mesh",
     price: 760,
     size: 8,
@@ -179,7 +184,7 @@ List<Product> products = [
     // color: Color(0xFFD3A984),
   ),
   Product(
-    id: 19,
+    id: "19",
     title: "nature",
     price: 500,
     size: 8,
@@ -188,7 +193,7 @@ List<Product> products = [
     // color: Color(0xFFD3A984),
   ),
   Product(
-    id: 20,
+    id: "20",
     title: "Rasta",
     price: 400,
     size: 8,
@@ -197,7 +202,7 @@ List<Product> products = [
     // color: Color(0xFFD3A984),
   ),
   Product(
-    id: 21,
+    id: "21",
     title: "Mesh",
     price: 760,
     size: 8,
@@ -206,7 +211,7 @@ List<Product> products = [
     // color: Color(0xFFD3A984),
   ),
   Product(
-    id: 22,
+    id: "22",
     title: "Louisa",
     price: 390,
     size: 10,
@@ -218,8 +223,3 @@ List<Product> products = [
 
 String dummyText =
     "This beautiful hair is all you need if you don't want to go through the stress of spending so much time on your hair. The texture is super soft and easy to manage! This is a 14 inches (2 bundles) and a matching closure.";
-
-
-
-
-
